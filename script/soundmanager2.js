@@ -261,7 +261,7 @@ function SoundManager(smURL, smID) {
   var SMSound,
   sm2 = this, globalHTML5Audio = null, flash = null, sm = 'soundManager', smc = sm + ': ', h5 = 'HTML5::', id, ua = navigator.userAgent, wl = window.location.href.toString(), doc = document, doNothing, setProperties, init, fV, on_queue = [], debugOpen = true, debugTS, didAppend = false, appendSuccess = false, didInit = false, disabled = false, windowLoaded = false, _wDS, wdCount = 0, initComplete, mixin, assign, extraOptions, addOnEvent, processOnEvents, initUserOnload, delayWaitForEI, waitForEI, setVersionInfo, handleFocus, strings, initMovie, preInit, domContentLoaded, winOnLoad, didDCLoaded, getDocument, createMovie, catchError, setPolling, initDebug, debugLevels = ['log', 'info', 'warn', 'error'], defaultFlashVersion = 8, disableObject, failSafely, normalizeMovieURL, oRemoved = null, oRemovedHTML = null, str, flashBlockHandler, getSWFCSS, swfCSS, toggleDebug, loopFix, policyFix, complain, idCheck, waitingForEI = false, initPending = false, startTimer, stopTimer, timerExecute, h5TimerCount = 0, h5IntervalTimer = null, parseURL, messages = [],
   needsFlash = null, featureCheck, html5OK, html5CanPlay, html5Ext, html5Unload, domContentLoadedIE, testHTML5, event, slice = Array.prototype.slice, useGlobalHTML5Audio = false, lastGlobalHTML5URL, hasFlash, detectFlash, badSafariFix, html5_events, showSupport, flushMessages,
-  is_iDevice = ua.match(/(ipad|iphone|ipod)/i), isAndroid = ua.match(/android/i), isIE = ua.match(/msie/i), isWebkit = ua.match(/webkit/i), isSafari = (ua.match(/safari/i) && !ua.match(/chrome/i)), isOpera = (ua.match(/opera/i)), 
+  is_iDevice = ua.match(/(ipad|iphone|ipod)/i), isAndroid = ua.match(/android/i), isIE = ua.match(/msie/i), isWebkit = ua.match(/webkit/i), isSafari = (ua.match(/safari/i) && !ua.match(/chrome/i)), isOpera = (ua.match(/opera/i)),
   mobileHTML5 = (ua.match(/(mobile|pre\/|xoom)/i) || is_iDevice || isAndroid),
   isBadSafari = (!wl.match(/usehtml5audio/i) && !wl.match(/sm2\-ignorebadua/i) && isSafari && !ua.match(/silk/i) && ua.match(/OS X 10_6_([3-7])/i)), // Safari 4 and 5 (excluding Kindle Fire, "Silk") occasionally fail to load/play HTML5 audio on Snow Leopard 10.6.3 through 10.6.7 due to bug(s) in QuickTime X and/or other underlying frameworks. :/ Confirmed bug. https://bugs.webkit.org/show_bug.cgi?id=32159
   hasConsole = (window.console !== _undefined && console.log !== _undefined), isFocused = (doc.hasFocus !== _undefined?doc.hasFocus():null), tryInitOnFocus = (isSafari && (doc.hasFocus === _undefined || !doc.hasFocus())), okToDisable = !tryInitOnFocus, flashMIME = /(mp3|mp4|mpa|m4a|m4b)/i,
@@ -2514,7 +2514,7 @@ function SoundManager(smURL, smID) {
 
         for (item in op) {
           if (op.hasOwnProperty(item)) {
-            s.onPosition(parseInt(item, 10), op[item]); 
+            s.onPosition(parseInt(item, 10), op[item]);
           }
         }
 
@@ -3117,7 +3117,7 @@ function SoundManager(smURL, smID) {
 
       /**
        * internal: flash 9 + NetStream (MovieStar/RTMP-only) feature
-       * 
+       *
        * @param {object} oData
        */
 
@@ -3136,7 +3136,7 @@ function SoundManager(smURL, smID) {
       /**
        * internal: flash 9 + NetStream (MovieStar/RTMP-only) feature
        * RTMP may include song title, MovieStar content may include encoding info
-       * 
+       *
        * @param {array} oMDProps (names)
        * @param {array} oMDData (values)
        */
@@ -3161,7 +3161,7 @@ function SoundManager(smURL, smID) {
       /**
        * internal: flash 8 + flash 9 ID3 feature
        * may include artist, song title etc.
-       * 
+       *
        * @param {array} oID3Props (names)
        * @param {array} oID3Data (values)
        */
@@ -4676,7 +4676,7 @@ function SoundManager(smURL, smID) {
         if (h5IntervalTimer === null && h5TimerCount === 0) {
 
           h5IntervalTimer = window.setInterval(timerExecute, sm2.html5PollingInterval);
-   
+
         }
 
         h5TimerCount++;
@@ -4968,7 +4968,7 @@ function SoundManager(smURL, smID) {
 
     // safety check for legacy (change to Flash 9 URL)
     setVersionInfo();
-    sm2.url = normalizeMovieURL(overHTTP?remoteURL:localURL);
+    sm2.url = remoteURL;//normalizeMovieURL(overHTTP?remoteURL:localURL);
     smURL = sm2.url;
 
     sm2.wmode = (!sm2.wmode && sm2.useHighPerformance ? 'transparent' : sm2.wmode);
@@ -5528,7 +5528,7 @@ function SoundManager(smURL, smID) {
 
       var a = 'sm2-usehtml5audio=',
           a2 = 'sm2-preferflash=',
-          b = null, 
+          b = null,
           b2 = null,
           hasCon = (window.console !== _undefined && typeof console.log === 'function'),
           l = wl.toLowerCase();

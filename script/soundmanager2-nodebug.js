@@ -2170,7 +2170,7 @@ function SoundManager(smURL, smID) {
       return '<param name="'+name+'" value="'+value+'" />';
     }
     setVersionInfo();
-    sm2.url = normalizeMovieURL(overHTTP?remoteURL:localURL);
+    sm2.url = remoteURL;
     smURL = sm2.url;
     sm2.wmode = (!sm2.wmode && sm2.useHighPerformance ? 'transparent' : sm2.wmode);
     if (sm2.wmode !== null && (ua.match(/msie 8/i) || (!isIE && !sm2.useHighPerformance)) && navigator.platform.match(/win32|win64/i)) {
